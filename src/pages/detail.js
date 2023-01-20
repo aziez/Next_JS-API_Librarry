@@ -36,7 +36,7 @@ export default function Details(detail){
                     <Button flex={1} colorScheme='whiteAlpha' color='black'>{likes} Likes</Button>
                 </CardFooter>  
                     <Button align='center' colorScheme='teal' variant='solid'  onClick={() => router.back()}>BACK</Button>
-    
+
             </Card>
         </div>
 
