@@ -1,4 +1,5 @@
 import { Box, Button, Center, Container, Heading, SimpleGrid, Spacer } from "@chakra-ui/react"
+import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -46,7 +47,17 @@ export default function Home() {
       <HeadingComponent />
       <SimpleGrid minChildWidth={300} columns={2}  spacing={10}>
       {data.map((item) => (
+        <Link key={item.id} href={{pathname: '/detail', query: {
+          id: item.id, 
+          photo: item.urls.small,
+          desc: item.alt_description,
+          likes: item.likes,
+          user: item.user.name,
+          avatar: item.user.profile_image.large,
+          bio: item.user.bio,
+        }}}>
         <GalleryComponent key={item.id} IM={item.urls.regular} USER={item.user.name} LIKES={item.likes} TAG={item.color} />
+        </Link>
       ))}
 
       </SimpleGrid>
