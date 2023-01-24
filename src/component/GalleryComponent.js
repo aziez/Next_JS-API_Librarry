@@ -46,14 +46,6 @@ function GalleryComponent({ IM, USER, LINK, TAG, LIKES }) {
            {USER}
           </Heading>
         </Stack>
-        <Flex minWidth={"max-content"} alignItems="center" gap={2}>
-          <Box p={2}>
-            <Heading size={"md"} color={"gray.300"}>Likes: {LIKES}</Heading>
-          </Box>
-          <Spacer />
-          <DownloadIcon boxSize={6} color={"gray.300"} />
-          <StarIcon color={"gray.200"} />
-        </Flex>
       </Box>
     </Center>
   );

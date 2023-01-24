@@ -6,6 +6,7 @@ const initialState = {
     loading: false,
     error: false,
     data: [],
+    individu: []
 }
 
 
@@ -26,46 +27,18 @@ export const gallerySlice = createSlice({
             state.error = false,
             state.data = payload
         },
+        getById: (state, {payload}) => {
+            state.loading = false,
+            state.error = false,
+            state.individu = payload
+        },
         setError: (state) => {
             state.error = true;
         },
     },
 })
 
-export const {setLoading, setData, searchData, setError} = gallerySlice.actions
+export const {setLoading, setData, searchData, setError, getById} = gallerySlice.actions
 export const itemSelector = (state) => state.data;
 
 export default gallerySlice.reducer
-
-const api = axios.create({
-    baseURL: "https://api.unsplash.com",
-    withCredentials: false,
-})
-
-export function fetchItems(){
-    const id = 'ghX9dF3ZzX6RU-GeqPLM21U5sQgVcrR13Rk-OAzq2G4'
-    return async (dispatch) => {
-        api
-            .get(`/photos/?client_id=${id}`)
-            .then((response) => {
-                dispatch(setData(response.data))
-            })
-            .catch((error) => {
-                dispatch(setError(error))
-            })
-    }
-}
-
-export function getItems(value){
-    const id = 'ghX9dF3ZzX6RU-GeqPLM21U5sQgVcrR13Rk-OAzq2G4'
-    return async (dispatch) => {
-        api
-            .get(`/search/photos/?client_id=${id}&query=${value}`)
-            .then((response) => {
-                dispatch(searchData(response.data.results))
-            })
-            .catch((error) => {
-                dispatch(setError(error))
-            })
-    }
-}

@@ -3,7 +3,8 @@ import { Box, Button, Center, Collapse, Container, Flex, Heading, IconButton, In
 import axios, {Axios} from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchItems, getItems, itemSelector } from '../state/slice/gallerySlice'
+import { getItems } from '../state/axios/AxiosServices'
+import {itemSelector } from '../state/slice/gallerySlice'
 import GalleryComponent from './GalleryComponent'
 import LoadingComponent from './loadingComponent'
 
