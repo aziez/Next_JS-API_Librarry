@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-function GalleryComponent({ IM, USER, LINK, TAG, LIKES }) {
+function GalleryComponent({ IM, USER, TAG }) {
   return (
     <Center py={12}>
       <Box

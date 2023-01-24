@@ -1,24 +1,33 @@
 import { Button, Center, Container, SimpleGrid, Spacer } from "@chakra-ui/react"
+import { Next, PageGroup, Paginator, Previous, usePaginator } from "chakra-paginator"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+import { BiArrowBack, BiArrowFromRight } from "react-icons/bi"
 import { useDispatch, useSelector } from "react-redux"
 import ErrorComponent from "../component/ErrorComponent"
 import GalleryComponent from "../component/GalleryComponent"
 import HeadingComponent from "../component/HeadingComponent"
 import LoadingComponent from "../component/loadingComponent"
+import PaginationComponent from "../component/PaginationComponent"
 import { fetchItems } from "../state/axios/AxiosServices"
 import {itemSelector } from "../state/slice/gallerySlice"
+
+
 
 
 export default function Home() {
   const dispatch = useDispatch()
   const { loading, error, data } = useSelector(itemSelector)
+  const pageNum = data.length
+  const {currentPage, setCurrentPage} = usePaginator({initialState: {currentPage: 1}})
   const router = useRouter()
 
   useEffect(() => {
-    dispatch(fetchItems())
-  }, [dispatch])
+    dispatch(fetchItems(currentPage))
+  }, [dispatch, currentPage])
+
+  console.log(currentPage);
 
   if (data.length === 0) {
     return (
@@ -37,6 +46,10 @@ export default function Home() {
   return (
     <div>
       <HeadingComponent />
+      <Paginator 
+        pagesQuantity={pageNum}
+        currentPage={currentPage}
+        onPageChange={setCurrentPage}>
       <SimpleGrid minChildWidth={300} columns={2} spacing={10}>
         {data.map((item) => (
           <Link key={item.id} href={{ pathname: '/detail', query: { id: item.id } }}>
@@ -45,6 +58,10 @@ export default function Home() {
         ))}
 
       </SimpleGrid>
+      <Center>
+      <PaginationComponent /> 
+      </Center>
+      </Paginator>
     </div>
   )
 }

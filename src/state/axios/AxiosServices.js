@@ -7,10 +7,10 @@ const api = axios.create({
     withCredentials: false,
 })
 
-export function fetchItems(){
+export function fetchItems(pageNum){
     return async (dispatch) => {
         api
-            .get(`/photos/?client_id=${process.env.uid}`)
+            .get(`/photos/?page=${pageNum}&client_id=${process.env.uid}`)
             .then((res) => {
                 dispatch(setData(res.data))
             })
@@ -21,10 +21,10 @@ export function fetchItems(){
 
 }
 
-export function getItems(value){
+export function getItems(value, pageNum){
     return async (dispatch) => {
         api
-            .get(`/search/photos/?client_id=${process.env.uid}&query=${value}`)
+            .get(`/search/photos/?client_id=${process.env.uid}&query=${value}&page=${pageNum}`)
             .then((response) => {
                 dispatch(searchData(response.data.results))
             })
