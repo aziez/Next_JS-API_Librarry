@@ -16,18 +16,12 @@ function HeadingComponent() {
     function onSubmit(e) {
         e.preventDefault()
         dispatch(getItems(query))
-        if (loading) {
-          return(
-            <LoadingComponent />
-          )
-        }
-        if (error) {
+  
           return(
             <Center>
               <Heading>Items Error</Heading>
             </Center>
           )
-        }
 
       }
 
