@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getItems } from '../state/axios/AxiosServices'
 import {itemSelector } from '../state/slice/gallerySlice'
 import GalleryComponent from './GalleryComponent'
-import LoadingComponent from './loadingComponent'
 
 function HeadingComponent() {
     const [query, setQuery] = useState("")
