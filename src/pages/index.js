@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux"
 import ErrorComponent from "../component/ErrorComponent"
 import GalleryComponent from "../component/GalleryComponent"
 import HeadingComponent from "../component/HeadingComponent"
-import LoadingComponent from "../component/loadingComponent"
 import PaginationComponent from "../component/PaginationComponent"
 import { fetchItems } from "../state/axios/AxiosServices"
 import {itemSelector } from "../state/slice/gallerySlice"
@@ -41,7 +40,6 @@ export default function Home() {
       </Container>
     )
   }
-  if (loading) return <LoadingComponent />
   if (error) return <ErrorComponent />
   return (
     <div>
