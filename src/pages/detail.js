@@ -2,7 +2,6 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import LoadingComponent from "../component/loadingComponent";
 import ErrorComponent from "../component/ErrorComponent";
 import {itemSelector } from "../state/slice/gallerySlice";
 import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Container, Flex, Heading, IconButton, Image, Text } from "@chakra-ui/react";
@@ -23,7 +22,6 @@ export default function Details() {
     dispatch(getItemById(id));
   }, [dispatch, id]);
 
-  if(loading) return <LoadingComponent />
   if(error) return <ErrorComponent />
 
   return (
